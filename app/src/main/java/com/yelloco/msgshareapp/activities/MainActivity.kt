@@ -1,8 +1,9 @@
-package com.yelloco.msgshareapp
+package com.yelloco.msgshareapp.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.yelloco.msgshareapp.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

@@ -1,8 +1,11 @@
-package com.yelloco.msgshareapp
+package com.yelloco.msgshareapp.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.yelloco.msgshareapp.adapters.HobbiesAdapter
+import com.yelloco.msgshareapp.R
+import com.yelloco.msgshareapp.models.Supplier
 import kotlinx.android.synthetic.main.activity_hobbies.*
 
 class HobbiesActivity : AppCompatActivity() {
@@ -11,6 +14,10 @@ class HobbiesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hobbies)
 
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager

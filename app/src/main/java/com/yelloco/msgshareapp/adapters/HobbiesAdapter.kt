@@ -1,12 +1,14 @@
-package com.yelloco.msgshareapp
+package com.yelloco.msgshareapp.adapters
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.yelloco.msgshareapp.R
+import com.yelloco.msgshareapp.models.Hobby
+import com.yelloco.msgshareapp.showToast
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class HobbiesAdapter(val context: Context, val hobbies: List<Hobby>): RecyclerView.Adapter<HobbiesAdapter.MyViewHolder>(){
@@ -32,7 +34,7 @@ class HobbiesAdapter(val context: Context, val hobbies: List<Hobby>): RecyclerVi
 
         init {
             itemView.setOnClickListener {
-                Toast.makeText(context, hobby!!.title + " Clicked !", Toast.LENGTH_SHORT).show()
+                context.showToast(hobby!!.title + " Clicked !")
             }
 
             itemView.list_item_imv.setOnClickListener {

@@ -1,10 +1,10 @@
-package com.yelloco.msgshareapp
+package com.yelloco.msgshareapp.models
 
 data class Hobby(var title: String)
 
 object Supplier{
 
-    var hobbies = listOf<Hobby>(
+    var hobbies = listOf(
             Hobby("Swimming"),
             Hobby("Reading"),
             Hobby("Playing"),

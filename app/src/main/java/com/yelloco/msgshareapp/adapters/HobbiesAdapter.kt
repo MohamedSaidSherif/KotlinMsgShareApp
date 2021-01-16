@@ -8,11 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.yelloco.msgshareapp.R
+import com.yelloco.msgshareapp.activities.SecondActivity
 import com.yelloco.msgshareapp.models.Hobby
 import com.yelloco.msgshareapp.showToast
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class HobbiesAdapter(val context: Context, val hobbies: List<Hobby>): RecyclerView.Adapter<HobbiesAdapter.MyViewHolder>(){
+class HobbiesAdapter(val context: Context, private val hobbies: List<Hobby>): RecyclerView.Adapter<HobbiesAdapter.MyViewHolder>(){
+
+    companion object{
+        val TAG: String = HobbiesAdapter::class.java.simpleName
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
@@ -30,30 +35,40 @@ class HobbiesAdapter(val context: Context, val hobbies: List<Hobby>): RecyclerVi
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     {
-        var hobby: Hobby? = null
+        var currentHobby: Hobby? = null
         var currentPosition: Int = 0
 
         init {
             itemView.setOnClickListener {
-                context.showToast(hobby!!.title + " Clicked !", Toast.LENGTH_LONG)
+
+                currentHobby?.let {
+                    context.showToast(currentHobby!!.title + " Clicked !", Toast.LENGTH_LONG)
+                }
             }
 
             itemView.list_item_imv.setOnClickListener {
-                val message: String = "My hobby is " + hobby!!.title
 
-                var intent = Intent()
-                intent.action = Intent.ACTION_SEND
-                intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, message)
+                currentHobby?.let {
+                    val message: String = "My hobby is " + currentHobby!!.title
 
-                context.startActivity(Intent.createChooser(intent, "Please select app: "))
+                    var intent = Intent()
+                    intent.action = Intent.ACTION_SEND
+                    intent.type = "text/plain"
+                    intent.putExtra(Intent.EXTRA_TEXT, message)
+
+                    context.startActivity(Intent.createChooser(intent, "Please select app: "))
+                }
             }
         }
-        fun setData(hobby: Hobby, position: Int)
+
+        fun setData(hobby: Hobby?, position: Int)
         {
-            itemView.list_item_title_tv.text = hobby.title
-            this.hobby = hobby
+            this.currentHobby = hobby
             this.currentPosition = position
+
+            hobby?.let {
+                itemView.list_item_title_tv.text = hobby.title
+            }
         }
     }
 }

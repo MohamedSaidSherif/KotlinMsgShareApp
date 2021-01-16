@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.yelloco.msgshareapp.R
 import com.yelloco.msgshareapp.models.Hobby
@@ -34,7 +35,7 @@ class HobbiesAdapter(val context: Context, val hobbies: List<Hobby>): RecyclerVi
 
         init {
             itemView.setOnClickListener {
-                context.showToast(hobby!!.title + " Clicked !")
+                context.showToast(hobby!!.title + " Clicked !", Toast.LENGTH_LONG)
             }
 
             itemView.list_item_imv.setOnClickListener {
